@@ -1,0 +1,27 @@
+{
+  "name": "db",
+  "module": "index.ts",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "studio": "drizzle-kit studio",
+    "yeet": "drizzle-kit push",
+    "migrate": "drizzle-kit migrate",
+    "gen": "drizzle-kit generate"
+  },
+  "devDependencies": {
+    "@types/bun": "^1.2.11",
+    "@types/pg": "^8.11.14",
+    "drizzle-kit": "^0.31.0"
+  },
+  "peerDependencies": {
+    "typescript": "^5"
+  },
+  "dependencies": {
+    "drizzle-orm": "^0.43.1",
+    "drizzle-zod": "^0.7.1",
+    "hono": "^4.7.8",
+    "pg": "^8.15.6",
+    "zod": "^3.24.3"
+  }
+}
