@@ -1,12 +1,17 @@
 {
-  "name": "order",
-  "module": "index.ts",
+  "name": "@outbox/order",
   "type": "module",
   "private": true,
   "devDependencies": {
-    "@types/bun": "latest"
+    "@types/bun": "latest",
+    "@outbox/db": "workspace:"
   },
   "peerDependencies": {
     "typescript": "^5"
+  },
+  "dependencies": {
+    "@hono/zod-validator": "^0.5.0",
+    "hono": "^4.7.8",
+    "pg": "^8.15.6"
   }
 }

@@ -15,22 +15,25 @@ services:
       interval: 5s
       timeout: 5s
       retries: 5
+    networks:
+      - outbox-network
 
-#   order-service:
-#     build:
-#       context: ./services/order
-#       dockerfile: Dockerfile
-#     environment:
-#       NODE_ENV: development
-#       DATABASE_URL: postgresql://outbox_user:outbox_password@postgres:5432/outbox_db
-#     ports:
-#       - "3000:3000"
-#     depends_on:
-#       postgres:
-#         condition: service_healthy
-#     volumes:
-#       - ./services/order-service:/app
-#       - /app/node_modules
+  order-service:
+    build:
+      context: .
+      dockerfile: services/order/Dockerfile
+    environment:
+      DATABASE_URL: postgresql://outbox_user:outbox_password@postgres:5432/core_db
+    ports:
+      - "3123:3123"
+    depends_on:
+      postgres:
+        condition: service_healthy
+    volumes:
+      - .:/app
+      - node_modules:/app/node_modules
+    networks:
+      - outbox-network
 
 #   relay-service:
 #     build:
@@ -38,7 +41,7 @@ services:
 #       dockerfile: Dockerfile
 #     environment:
 #       NODE_ENV: development
-#       DATABASE_URL: postgresql://outbox_user:outbox_password@postgres:5432/outbox_db
+#       DATABASE_URL: postgresql://outbox_user:outbox_password@localhost:5432/postgres
 #     depends_on:
 #       postgres:
 #         condition: service_healthy
@@ -56,9 +59,10 @@ services:
   
 volumes:
   postgres_data:
+  node_modules:
 
 networks:
-  default:
-    name: outbox-network
+  outbox-network:
+    driver: bridge
 
   

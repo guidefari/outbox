@@ -1,8 +1,9 @@
 {
-  "name": "db",
-  "module": "index.ts",
+  "name": "@outbox/db",
   "type": "module",
-  "private": true,
+  "exports": {
+    "./*": "./*.ts"
+  },
   "scripts": {
     "studio": "drizzle-kit studio",
     "yeet": "drizzle-kit push",
@@ -18,9 +19,7 @@
     "typescript": "^5"
   },
   "dependencies": {
-    "drizzle-orm": "^0.43.1",
     "drizzle-zod": "^0.7.1",
-    "hono": "^4.7.8",
     "pg": "^8.15.6",
     "zod": "^3.24.3"
   }

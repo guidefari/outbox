@@ -1,0 +1,13 @@
+{
+    "name": "outbox-monorepo",
+    "workspaces": [
+        "services/*"
+    ],
+    "devDependencies": {
+        "typescript": "latest",
+        "@types/bun": "latest"
+    },
+    "dependencies": {
+        "drizzle-orm": "^0.43.1"
+    }
+}
