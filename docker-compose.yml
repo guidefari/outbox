@@ -35,19 +35,17 @@ services:
     networks:
       - outbox-network
 
-#   relay-service:
-#     build:
-#       context: ./services/relay
-#       dockerfile: Dockerfile
-#     environment:
-#       NODE_ENV: development
-#       DATABASE_URL: postgresql://outbox_user:outbox_password@localhost:5432/postgres
-#     depends_on:
-#       postgres:
-#         condition: service_healthy
-#     volumes:
-#       - ./services/relay-service:/app
-#       - /app/node_modules
+  relay-service:
+    build:
+      context: ./services/relay
+      dockerfile: Dockerfile
+    environment:
+      DATABASE_URL: postgresql://outbox_user:outbox_password@postgres:5432/core_db?sslmode=disable
+    depends_on:
+      postgres:
+        condition: service_healthy
+    networks:
+      - outbox-network
 
 #   rabbitmq:
 #     image: rabbitmq:3-management
