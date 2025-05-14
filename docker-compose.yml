@@ -47,14 +47,18 @@ services:
     networks:
       - outbox-network
 
-#   rabbitmq:
-#     image: rabbitmq:3-management
-#     ports:
-#       - 5672:5672
-#       - 15672:15672
-#   email-service:
-    
-  
+  email-service:
+    build:
+      context: .
+      dockerfile: services/email/Dockerfile
+    ports:
+      - "4321:4321"
+    volumes:
+      - .:/app
+      - node_modules:/app/node_modules
+    networks:
+      - outbox-network
+      
 volumes:
   postgres_data:
   node_modules:
@@ -62,5 +66,3 @@ volumes:
 networks:
   outbox-network:
     driver: bridge
-
-  
